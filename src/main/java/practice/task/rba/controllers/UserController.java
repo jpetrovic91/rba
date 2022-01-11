@@ -24,6 +24,10 @@ public class UserController {
 
     @PostMapping("/add")
     public ResponseEntity<String> addWithJson(@RequestBody User user){
+
+        if(!(user.getOIB().matches("[0-9]+") && user.getOIB().length() == 11))
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("OIB je neispravan");
+
         if(userRepository.existsById(user.getOIB()))
             return ResponseEntity.ok().body("Korisnik sa OIB-om " + user.getOIB() + " već postoji u bazi.");
         else{
