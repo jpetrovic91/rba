@@ -1,6 +1,7 @@
 package practice.task.rba.enums;
 
 import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonValue;
 
 public enum Status {
 
@@ -26,5 +27,10 @@ public enum Status {
                 return status;
 
         return null;
+    }
+
+    @JsonValue
+    public String getStatusString(){
+        return status;
     }
 }
